@@ -31,22 +31,21 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'bkad/CamelCaseMotion'
-
-" Plug 'tomasr/molokai'
-" Plug 'djjcast/mirodark'
-Plug 'joshdick/onedark.vim'
-Plug 'ciaranm/inkpot'
-
 Plug 'ctrlpvim/ctrlp.vim'
-" Type <Leader>o to open a new file
-nnoremap <Leader>o :CtrlP<CR>
-" Type <Leader>O to open buffer
-nnoremap <Leader>O :CtrlPBuffer<CR>
 
-Plug 'bling/vim-airline'
+" color schemes
+Plug 'ciaranm/inkpot'
+Plug 'altercation/vim-colors-solarized'
+
+nnoremap <Leader>/ :CtrlPMRU<CR>
+nnoremap <Leader>o :CtrlPBuffer<CR>
+nnoremap <Leader>O :CtrlPMixed<CR>
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 " let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
-let g:airline_theme='powerlineish'
+let g:airline_theme='solarized'
 " let g:airline_left_sep=''
 " let g:airline_right_sep=''
 " let g:airline_section_z=''
@@ -64,6 +63,9 @@ Plug 'fsharp/vim-fsharp', {
     \}
 
 Plug 'keith/swift.vim'
+
+" vim-plug
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
 
@@ -98,4 +100,5 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-colorscheme inkpot
+set background=dark
+colorscheme solarized
