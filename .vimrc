@@ -55,7 +55,9 @@ if !exists('g:ycm_semantic_triggers')
 endif
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-Plug 'keith/swift.vim'
+if !(has('win32') || has('win64'))
+    Plug 'keith/swift.vim'
+endif
 
 Plug 'elixir-lang/vim-elixir'
 
