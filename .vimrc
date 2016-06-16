@@ -1,6 +1,8 @@
 set nocompatible
 let mapleader = "\<Space>"
 
+let isWindows = has('win32') || has('win64')
+
 set number " Print line number
 set noerrorbells " Don't ring the bell for error messages
 set visualbell " Use visual bell instead of beep
@@ -55,7 +57,7 @@ if !exists('g:ycm_semantic_triggers')
 endif
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-if !(has('win32') || has('win64'))
+if !isWindows
     Plug 'keith/swift.vim'
 endif
 
@@ -80,7 +82,7 @@ nmap <leader>h :bprevious<CR>
 nmap <leader>q :bd<CR>
 
 if executable('ag')
-    if has('win32') || has('win64')
+    if isWindows
         let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s | dos2unix'
     else
         " use ag over grep
@@ -99,3 +101,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 set background=dark
 colorscheme solarized
+
+if isWindows
+    set guifont=Menlo:h12:cEASTEUROPE
+endif
