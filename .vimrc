@@ -41,30 +41,22 @@ nnoremap <Leader>/ :CtrlPMRU<CR>
 nnoremap <Leader>o :CtrlPBuffer<CR>
 nnoremap <Leader>O :CtrlPMixed<CR>
 
+" [i] open new line above cursor with CTRL-L
+inoremap <C-L> <C-O>O
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-" let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 let g:airline_theme='solarized'
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-" let g:airline_section_z=''
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.fsharp = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
-
-Plug 'fsharp/vim-fsharp', {
-    \ 'for': 'fsharp',
-    \ 'do': 'make fsautocomplete'
-    \}
 
 Plug 'keith/swift.vim'
 
-" vim-plug
 Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
