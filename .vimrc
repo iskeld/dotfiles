@@ -78,11 +78,15 @@ nmap <leader>h :bprevious<CR>
 nmap <leader>q :bd<CR>
 
 if executable('ag')
-    " use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    if has('win32') || has('win64')
+        let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s | dos2unix'
+    else
+        " use ag over grep
+        set grepprg=ag\ --nogroup\ --nocolor\ --column
 
-    " Use ag in CtrlP for listing files.
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        " Use ag in CtrlP for listing files.
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    endif
 
     " don't use cache, ag seems fast enough
     let g:ctrlp_use_caching = 0
@@ -90,7 +94,6 @@ endif
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 set background=dark
 colorscheme solarized
