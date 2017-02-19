@@ -1,0 +1,6 @@
+.git
+.hg
+.svn
+_build
+deps
+node_modules
