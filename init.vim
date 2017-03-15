@@ -124,6 +124,7 @@ nmap <Leader>w :w<CR>
 " [i] open new line above cursor with CTRL-L
 inoremap <C-L> <C-O>O
 
+" [i] move one char back in insert mode
 inoremap <C-Space> <Esc>i
 
 autocmd Filetype elixir setlocal ts=2 sw=2 expandtab
