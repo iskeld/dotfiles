@@ -48,6 +48,9 @@ set smartcase
 " Keep 8 lines above or below the cursor when scrolling.
 set scrolloff=8 
 
+" netrw
+set previewheight=24
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Polyglot loads language support on demand!
@@ -73,7 +76,7 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command =
-    \ 'ag %s --files-with-matches --nocolor -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+    \ 'ag %s --files-with-matches --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -82,6 +85,13 @@ else
   let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
+
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+Plug 'tpope/vim-endwise'
+
+" buffer commands that do not close the split
+Plug 'qpkorr/vim-bufkill'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
@@ -102,14 +112,19 @@ nmap <Leader>l :bnext<CR>
 " Move to the previous buffer
 nmap <Leader>h :bprevious<CR>
 
-" Unload buffer
-nmap <Leader>q :bd<CR>
+" Unload buffer (using buffkill)
+nmap <Leader>q :BD<CR>
+
+" Wipeout buffer (using bufkill)
+nmap <Leader>Q :BW<CR>
 
 " Save current buffer
 nmap <Leader>w :w<CR>
 
 " [i] open new line above cursor with CTRL-L
 inoremap <C-L> <C-O>O
+
+inoremap <C-Space> <Esc>i
 
 autocmd Filetype elixir setlocal ts=2 sw=2 expandtab
 
