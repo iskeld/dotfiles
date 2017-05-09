@@ -66,7 +66,7 @@ Plug 'vim-airline/vim-airline-themes'
 " CtrlP: Full path fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_open_new_file = 'r'
-  nnoremap <Leader>/ :CtrlPMRU<CR>
+  nnoremap <Leader>/ :CtrlPCurWD<CR>
   nnoremap <Leader>b :CtrlPBuffer<CR>
   nnoremap <Leader>m :CtrlPMixed<CR>
 
@@ -86,12 +86,18 @@ else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
-Plug 'powerman/vim-plugin-AnsiEsc'
+if has("unix")
+  Plug 'powerman/vim-plugin-AnsiEsc'
+endif
 
 Plug 'tpope/vim-endwise'
 
 " buffer commands that do not close the split
-Plug 'qpkorr/vim-bufkill'
+" !!! bufkill seems to be causing issues with netrw preview
+" Plug 'qpkorr/vim-bufkill'
+
+" alternative to bufkill
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
@@ -112,11 +118,11 @@ nmap <Leader>l :bnext<CR>
 " Move to the previous buffer
 nmap <Leader>h :bprevious<CR>
 
-" Unload buffer (using buffkill)
-nmap <Leader>q :BD<CR>
+" Unload buffer (not using buffkill)
+nmap <Leader>q :Sayonara!<CR>
 
-" Wipeout buffer (using bufkill)
-nmap <Leader>Q :BW<CR>
+" Wipeout buffer (not using bufkill)
+nmap <Leader>Q :bw<CR>
 
 " Save current buffer
 nmap <Leader>w :w<CR>
