@@ -50,6 +50,8 @@ set scrolloff=8
 
 " netrw
 set previewheight=24
+let g:netrw_banner=0
+let g:netrw_liststyle=3
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -61,12 +63,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+  let g:airline#extensions#tabline#buffer_nr_show = 1
   let g:airline_theme='solarized'
 
 " CtrlP: Full path fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_open_new_file = 'r'
   nnoremap <Leader>/ :CtrlPCurWD<CR>
+  nnoremap <Leader>. :CtrlPCurFile<CR>
   nnoremap <Leader>b :CtrlPBuffer<CR>
   nnoremap <Leader>m :CtrlPMixed<CR>
 
@@ -110,7 +114,7 @@ call plug#end()
 "" Keyboard
 " Remove highlights
 " Clear the search buffer when hitting return
-nnoremap <silent> <cr> :nohlsearch<cr>
+nnoremap <silent> <Leader><cr> :nohlsearch<cr>
 
 " Move to the next buffer
 nmap <Leader>l :bnext<CR>
