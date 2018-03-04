@@ -48,6 +48,12 @@ set smartcase
 " Keep 8 lines above or below the cursor when scrolling.
 set scrolloff=8 
 
+" netrw
+set previewheight=24
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+nnoremap <Leader>` :Lexplore<CR>
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Elixir
@@ -55,10 +61,6 @@ Plug 'slashmili/alchemist.vim'
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim'
-
-" Go
-Plug 'fatih/vim-go'
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.local/share/nvim/plugged/gocode/nvim/symlink.sh' }
 
 " Polyglot loads language support on demand!
 Plug 'sheerun/vim-polyglot'
@@ -101,14 +103,12 @@ endif
 
 Plug 'tpope/vim-endwise'
 
-Plug 'tpope/vim-vinegar'
-
 " buffer commands that do not close the split
 " !!! bufkill seems to be causing issues with netrw preview
 " Plug 'qpkorr/vim-bufkill'
 
 " alternative to bufkill
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+" Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
@@ -149,5 +149,3 @@ else
     set background=dark
 endif
 colorscheme solarized
-
-autocmd CompleteDone * pclose
