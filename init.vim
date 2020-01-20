@@ -48,10 +48,18 @@ set smartcase
 " Keep 8 lines above or below the cursor when scrolling.
 set scrolloff=8 
 
+" disable preview window since we're using float_preview
+set completeopt-=preview
+
+set cmdheight=2
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Elixir
 Plug 'slashmili/alchemist.vim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim'
@@ -110,8 +118,25 @@ Plug 'tpope/vim-vinegar'
 " alternative to bufkill
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+
+  " \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rls'],
+      \ }
+
+  " Don't show inline errors. See:
+  " https://github.com/autozimu/LanguageClient-neovim/issues/719
+  let g:LanguageClient_useVirtualText=0
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
+
+Plug 'ncm2/float-preview.nvim'
+  let g:float_preview#docked = 0
 
 call plug#end()
 
