@@ -55,6 +55,9 @@ set cmdheight=2
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" theme
+Plug 'morhetz/gruvbox'
+
 " Elixir
 Plug 'slashmili/alchemist.vim'
 
@@ -173,6 +176,7 @@ if $BACKGROUND ==? "light"
 else
     set background=dark
 endif
-colorscheme solarized
+
+autocmd vimenter * colorscheme gruvbox
 
 autocmd CompleteDone * pclose

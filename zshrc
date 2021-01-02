@@ -1,6 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="dark"
 
 plugins=(git zsh-nvm)
 
